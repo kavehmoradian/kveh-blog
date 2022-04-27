@@ -13,5 +13,27 @@
   <p>
     {{ post.body }}
   </p>
+  {% for comment in post.comments.all %}
+    <h2>{{comment.body}}</h2>
+    <br>
+    <a href="{% url 'comments:delete_comment' comment.id%}">delete</a>
+    {% for reply in comment.replys.all %}
+      <p>{{ reply.body }}</p>
+      <br>
+      <a href="{% url 'comments:delete_reply' reply.id%}">delete reply</a>
+    {% endfor %}
+    <form action="{% url 'comments:add_reply' comment.id%}" method="post">
+      {{ reply_form.as_p }}
+      {% csrf_token %}
+      <p><input type="submit" value="add reply"></p>
+    </form>
+    <hr>
+  {% endfor %}
+  <br><br>
+  <form action="{% url 'comments:add_comment' post.id%}" method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="add comment"></p>
+  </form>
 
 {% endblock %}

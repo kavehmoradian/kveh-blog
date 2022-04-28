@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from categories.models import Article
 
 class Post(models.Model):
     STATUS_CHOICES = (
@@ -20,7 +21,9 @@ class Post(models.Model):
     status = models.CharField(max_length=1,
                             choices=STATUS_CHOICES,
                             default="p")
-    category = models.CharField(max_length=100)
+    category = models.ForeignKey(Article,
+                            on_delete=models.CASCADE,
+                            related_name='posts')
 
     class Meta:
         ordering = ('-publish', )
@@ -29,4 +32,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('posts:post', args=[self.category, self.slug])
+        return reverse('posts:post', args=[self.category.sub_category.category.slug,
+                                    self.category.sub_category.slug,
+                                    self.category.slug,
+                                    self.slug])

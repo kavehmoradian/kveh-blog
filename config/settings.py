@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts.apps.PostsConfig',
     'comments.apps.CommentsConfig',
+    'categories.apps.CategoriesConfig',
 ]
 
 MIDDLEWARE = [

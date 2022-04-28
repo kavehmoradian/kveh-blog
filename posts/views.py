@@ -8,10 +8,10 @@ class PostListView(ListView):
     context_object_name = "posts"
     template_name = "posts/posts.html"
 
-def post(request, category, slug):
+def post(request, slug, **args):
     comment_form = CommentForm()
     reply_form = ReplyForm()
-    post = get_object_or_404(Post, slug=slug, category=category)
+    post = get_object_or_404(Post, slug=slug)
     template_name = "posts/post.html"
     return render(request, template_name, {'post': post,
                                 'comment_form': comment_form,

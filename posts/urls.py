@@ -5,5 +5,5 @@ app_name = 'posts'
 
 urlpatterns = [
     path('', views.PostListView.as_view(), name='post_list'),
-    path('<category>/<slug>/', views.post, name='post'),
+    path('<category>/<SubCategory>/<article>/<slug>', views.post, name='post'),
 ]

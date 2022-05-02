@@ -8,6 +8,7 @@ __pycache__/
 
 #files
 images/
+statics/
 
 # Distribution / packaging
 .Python

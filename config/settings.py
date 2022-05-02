@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'posts.apps.PostsConfig',
     'comments.apps.CommentsConfig',
     'categories.apps.CategoriesConfig',
@@ -103,8 +104,25 @@ ALLOW_UNICODE_SLUGS = True
 
 # Static files (CSS, JavaScript, Images)
 
+STATIC_ROOT = BASE_DIR / 'statics'
 STATIC_URL = 'static/'
 
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+    'toolbar': 'Custom',
+    'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source', 'CodeSnippet', "TextColor", "FontSize", "Maximize", 'Smiley']
+        ],
+    'extraPlugins': ','.join(
+        [
+            'codesnippet',
+        ]),
+    },
+}
